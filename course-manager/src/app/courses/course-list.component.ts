@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { isNull } from 'util';
 import { Course } from './course';
 
 @Component({
@@ -13,8 +12,8 @@ export class CourseListComponent implements OnInit{
         this.courses = [
             {
                 'id': 1,
-                'name': 'Matematica',
-                'imageUrl': '',
+                'name': 'Matematicaa',
+                'imageUrl': '/assets/images/mario.png',
                 'price': 99.99,
                 'code': 'xps-345',
                 'duration': 120,
@@ -24,7 +23,7 @@ export class CourseListComponent implements OnInit{
             {
                 'id': 2,
                 'name': 'Portugues',
-                'imageUrl': '',
+                'imageUrl': '/assets/images/mario.png',
                 'price': 45.99,
                 'code': 'gds-345',
                 'duration': 80,
