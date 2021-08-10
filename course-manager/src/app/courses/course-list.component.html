@@ -36,7 +36,9 @@
             <td>
                 <app-star [rating]="c.rating"></app-star>
             </td>
-            <td></td>
+            <td>
+                <a [routerLink]="['/course/info', c.id]" class="btn btn-primary">Edit</a>
+            </td>
         </tr>
     </tbody>
 
