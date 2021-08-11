@@ -1,5 +1,6 @@
 import { Course } from './course';
 import { Injectable } from '@angular/core';
+import { CursorError } from '@angular/compiler/src/ml_parser/lexer';
 
 @Injectable({
     providedIn: 'root'
@@ -9,6 +10,13 @@ export class CourseService{
     
     retriveAll(): Course[] {
         return COURSES;
+    }
+
+    retrieveById(id: number): Course {
+        var a = COURSES.find(courseIterator => courseIterator.id === id);
+        if(a !== undefined)
+            return a;
+        return new Course();
     }
 }
 
