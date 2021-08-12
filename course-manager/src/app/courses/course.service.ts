@@ -1,22 +1,33 @@
 import { Course } from './course';
 import { Injectable } from '@angular/core';
 import { CursorError } from '@angular/compiler/src/ml_parser/lexer';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 
 export class CourseService{
+
+    private courseUrl: string = 'http://localhost:3100/api/courses';
+
+    constructor(private httpClient: HttpClient){}
     
-    retriveAll(): Course[] {
-        return COURSES;
+    retriveAll(): Observable<Course[]> {
+        return this.httpClient.get<Course[]>(this.courseUrl);
     }
 
-    retrieveById(id: number): Course {
-        var a = COURSES.find(courseIterator => courseIterator.id === id);
-        if(a !== undefined)
-            return a;
-        return new Course();
+    retrieveById(id: number): Observable<Course> {
+        return this.httpClient.get<Course>(`${this.courseUrl}/${id}`);
+    }
+
+    save(course: Course): Observable<Course> {
+        if(course.id){
+            return this.httpClient.put<Course>(`${this.courseUrl}/${course.id}`, course);
+        } else {
+            return this.httpClient.post<Course>(`${this.courseUrl}`, course);
+        }
     }
 }
 
